@@ -95,6 +95,10 @@ void juwu(std::string inputFile, std::string outputFile){
           float zeta = (plus+minus).Eta();
           float zphi = (plus+minus).Phi();
 
+          h_genZMass->Sumw2();
+          h_genZPt->Sumw2();
+          h_genZEta->Sumw2();
+          h_genZPhi->Sumw2();
 
 	  h_genZMass->Fill(zm);
           h_genZPt->Fill(zpt);
@@ -140,15 +144,23 @@ void juwu(std::string inputFile, std::string outputFile){
 	   
        }
 
+         h_nGenJet->Sumw2();
 	 h_nGenJet->Fill(countjet);
 
      if(jetPtMax>0)
        {
+         h_genJetPt->Sumw2();
+         h_genJetEta->Sumw2();
+         h_genJetPhi->Sumw2();
 	 h_genJetPt->Fill(jet_l4.Pt());
 	 h_genJetEta->Fill(jet_l4.Eta());
 	 h_genJetPhi->Fill(jet_l4.Phi());
+
 	 float ydif = 0.5*(jet_l4.Rapidity()-((plus+minus).Rapidity()));
 	 float ysum = 0.5*(jet_l4.Rapidity()+((plus+minus).Rapidity()));
+
+	 h_DiffY->Sumw2();
+	 h_SumY->Sumw2();
 	 h_DiffY->Fill(ydif);
 	 h_SumY->Fill(ysum);
        }
@@ -168,44 +180,40 @@ void juwu(std::string inputFile, std::string outputFile){
     
   //normalization
   float tZPt=0;                                                                                                            
-  h_genZPt->Sumw2();                                                                                                       
   tZPt=h_genZPt->Integral();                                                                                               
   h_genZPt->Scale(1/tZPt);                                                                                                 
   float tZEta=0;                                                                                                           
-  h_genZEta->Sumw2();                                                                                                      
   tZEta=h_genZEta->Integral();                                                                                             
   h_genZEta->Scale(1/tZEta);                                                                                               
   float tZPhi=0;                                                                                                           
-  h_genZPhi->Sumw2();                                                                                                      
   tZPhi=h_genZPhi->Integral();                                                                                             
   h_genZPhi->Scale(1/tZPhi);                                                                                               
   float tZMass=0;                                                                                                          
-  h_genZMass->Sumw2();                                                                                                     
   tZMass=h_genZMass->Integral();                                                                                           
   h_genZMass->Scale(1/tZMass);                                                                                             
   float tNJet=0;                                                                                                           
-  h_nGenJet->Sumw2();                                                                                                      
   tNJet=h_nGenJet->Integral();                                                                                             
   h_nGenJet->Scale(1/tNJet);                                                                                               
   float tJPt=0;                                                                                                            
-  h_genJetPt->Sumw2();                                                                                                     
   tJPt=h_genJetPt->Integral();                                                                                             
   h_genJetPt->Scale(1/tJPt);                                                                                               
   float tJEta=0;                                                                                                           
-  h_genJetEta->Sumw2();                                                                                                    
   tJEta=h_genJetEta->Integral();                                                                                           
   h_genJetEta->Scale(1/tJEta);                                                                                             
   float tJPhi=0;                                                                                                           
-  h_genJetPhi->Sumw2();                                                                                                    
   tJPhi=h_genJetPhi->Integral();                                                                                           
   h_genJetPhi->Scale(1/tJPhi);     
+
   float tsy=0;
-  h_SumY->Sumw2();
+
   tsy=h_SumY->Integral();
+
   h_SumY->Scale(1/tsy);
+
   float tdy=0;
-  h_DiffY->Sumw2();
+
   tdy=h_DiffY->Integral();
+
   h_DiffY->Scale(1/tdy);
   
 
