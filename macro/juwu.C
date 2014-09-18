@@ -34,6 +34,20 @@ void juwu(std::string inputFile, std::string outputFile){
   TH1F* h_DiffY    = new TH1F("h_DiffY","",40,-4.5,4.5);
 
 
+  h_genZMass->Sumw2();
+  h_genZPt->Sumw2();
+  h_genZEta->Sumw2();
+  h_genZPhi->Sumw2();
+  h_nGenJet->Sumw2();
+  h_genJetPt->Sumw2();
+  h_genJetEta->Sumw2();
+  h_genJetPhi->Sumw2();
+  h_DiffY->Sumw2();
+  h_SumY->Sumw2();
+
+
+
+
   //Event loop
   for(long jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
 
@@ -54,8 +68,9 @@ void juwu(std::string inputFile, std::string outputFile){
     Float_t* genJetEta   = data.GetPtrFloat("genJetEta");
     Float_t* genJetPhi   = data.GetPtrFloat("genJetPhi");
     Float_t* genJetE     = data.GetPtrFloat("genJetE");
+    Float_t  weight      = data.GetFloat("mcWeight");
 
-
+    
 
     TLorentzVector plus(0,0,0,0);
     TLorentzVector minus(0,0,0,0);
@@ -95,15 +110,10 @@ void juwu(std::string inputFile, std::string outputFile){
           float zeta = (plus+minus).Eta();
           float zphi = (plus+minus).Phi();
 
-          h_genZMass->Sumw2();
-          h_genZPt->Sumw2();
-          h_genZEta->Sumw2();
-          h_genZPhi->Sumw2();
-
-	  h_genZMass->Fill(zm);
-          h_genZPt->Fill(zpt);
-          h_genZEta->Fill(zeta);
-          h_genZPhi->Fill(zphi);
+	  h_genZMass->Fill(zm,weight);
+          h_genZPt->Fill(zpt,weight);
+          h_genZEta->Fill(zeta,weight);
+          h_genZPhi->Fill(zphi,weight);
 
      }
 
@@ -144,25 +154,22 @@ void juwu(std::string inputFile, std::string outputFile){
 	   
        }
 
-         h_nGenJet->Sumw2();
-	 h_nGenJet->Fill(countjet);
+
+     h_nGenJet->Fill(countjet,weight);
 
      if(jetPtMax>0)
        {
-         h_genJetPt->Sumw2();
-         h_genJetEta->Sumw2();
-         h_genJetPhi->Sumw2();
-	 h_genJetPt->Fill(jet_l4.Pt());
-	 h_genJetEta->Fill(jet_l4.Eta());
-	 h_genJetPhi->Fill(jet_l4.Phi());
+
+	 h_genJetPt->Fill(jet_l4.Pt(),weight);
+	 h_genJetEta->Fill(jet_l4.Eta(),weight);
+	 h_genJetPhi->Fill(jet_l4.Phi(),weight);
 
 	 float ydif = 0.5*(jet_l4.Rapidity()-((plus+minus).Rapidity()));
 	 float ysum = 0.5*(jet_l4.Rapidity()+((plus+minus).Rapidity()));
 
-	 h_DiffY->Sumw2();
-	 h_SumY->Sumw2();
-	 h_DiffY->Fill(ydif);
-	 h_SumY->Fill(ysum);
+
+	 h_DiffY->Fill(ydif,weight);
+	 h_SumY->Fill(ysum,weight);
        }
 
 

@@ -5,9 +5,9 @@
 void run()
 {
 
-  TFile* root1  = new TFile("results/DY0jet_LO_histo.root");
-  TFile* root2  = new TFile("results/DY0jet_NLO_histo.root");
-  TFile* root3  = new TFile("results/DY1jet_LO_histo.root");
+  TFile* root1  = new TFile("results/dy0j_4f_LO_MLM.root");
+  TFile* root2  = new TFile("results/dy0j_4f_NLO.root");
+  TFile* root3  = new TFile("results/dy01j_4f_LO_MLM.root");
 
 
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");
@@ -182,24 +182,24 @@ void run()
   c1->Divide(2,2);
 
   c1->cd(1);
-  root2_ZPt->GetXaxis()->SetTitle("Z P_{T} [GeV]");
-  root2_ZPt->Draw("histe");
+  root3_ZPt->GetXaxis()->SetTitle("Z P_{T} [GeV]");
+  root3_ZPt->Draw("histe");
   root1_ZPt->Draw("esame");
-  root3_ZPt->Draw("histesame");
+  root2_ZPt->Draw("histesame");
 
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
   leg->AddEntry(root1_ZPt,"DY_0Jet_LO","lep");
   leg->AddEntry(root2_ZPt,"DY_0Jet_NLO","F");
-  leg->AddEntry(root3_ZPt,"DY_1Jet_LO","F");
+  leg->AddEntry(root3_ZPt,"DY_01Jet_LO","F");
   leg->Draw("same");
 
   c1->cd(2);
-  root3_ZEta->GetXaxis()->SetTitle("Z #eta");
-  root3_ZEta->Draw("histe");
+  root2_ZEta->GetXaxis()->SetTitle("Z #eta");
+  root2_ZEta->Draw("histe");
   root1_ZEta->Draw("esame");
-  root2_ZEta->Draw("histesame");
+  root3_ZEta->Draw("histesame");
 
   c1->cd(3);
   root3_ZPhi->GetXaxis()->SetTitle("Z #phi");
@@ -217,7 +217,7 @@ void run()
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("canvas1.png");
+  img1->WriteImage("canvas4.png");
   delete c1;
   delete img1;
 
@@ -226,10 +226,10 @@ void run()
   c2->Divide(2,2);
 
   c2->cd(1);
-  root2_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
-  root2_JPt->Draw("histe");
+  root3_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
+  root3_JPt->Draw("histe");
   root1_JPt->Draw("esame");
-  root3_JPt->Draw("histesame");
+  root2_JPt->Draw("histesame");
 
 
   leg = new TLegend(0.5,0.5,0.8,0.8);
@@ -266,7 +266,7 @@ void run()
   gSystem->ProcessEvents();
   TImage *img2 = TImage::Create();
   img2->FromPad(c2);
-  img2->WriteImage("canvas2.png");
+  img2->WriteImage("canvas5.png");
   delete c2;
   delete img2;
 
@@ -286,10 +286,10 @@ void run()
 
 
   c3->cd(1);
-  root3_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
-  root3_DiffY->Draw("histe");
+  root2_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
+  root2_DiffY->Draw("histe");
   root1_DiffY->Draw("esame");
-  root2_DiffY->Draw("histesame");
+  root3_DiffY->Draw("histesame");
 
 
   leg = new TLegend(0.7,0.7,0.8,0.8);
@@ -305,7 +305,7 @@ void run()
   gSystem->ProcessEvents();
   TImage *img3 = TImage::Create();
   img3->FromPad(c3);
-  img3->WriteImage("canvas3.png");
+  img3->WriteImage("canvas6.png");
   delete c3;
   delete img3;
 
