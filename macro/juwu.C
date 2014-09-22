@@ -70,6 +70,8 @@ void juwu(std::string inputFile, std::string outputFile){
     Float_t* genJetE     = data.GetPtrFloat("genJetE");
     Float_t  weight      = data.GetFloat("mcWeight");
 
+
+    cout<<"mcWeight:"<<weight<<endl;
     
 
     TLorentzVector plus(0,0,0,0);
