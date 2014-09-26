@@ -5,9 +5,9 @@
 void run()
 {
 
-  TFile* root1  = new TFile("rootfile/dy0j_5f_LO_MLM.root");
+  TFile* root1  = new TFile("rootfile/dy0j_4f_NLO.root");
   //TFile* root2  = new TFile("rootfile/old_flat/DY0jet_LO_histo.root");
-  TFile* root2  = new TFile("rootfile/dy01j_5f_LO_MLM.root");
+  TFile* root2  = new TFile("rootfile/dy0j_5f_NLO.root");
 
 
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");
@@ -190,15 +190,15 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_ZPt,"4f","lep");
-  leg->AddEntry(root2_ZPt,"OLD_4f","F");
+  leg->AddEntry(root1_ZPt,"Z+0,1jet 4f LO","lep");
+  leg->AddEntry(root2_ZPt,"Z+0,1jet 5f LO","F");
   //leg->AddEntry(root3_ZPt,"DY_01Jet_LO","F");
   leg->Draw("same");
 
   c1->cd(2);
-  root2_ZEta->GetXaxis()->SetTitle("Z #eta");
-  root2_ZEta->Draw("histe");
-  root1_ZEta->Draw("esame");
+  root1_ZEta->GetXaxis()->SetTitle("Z #eta");
+  root1_ZEta->Draw("e");
+  root2_ZEta->Draw("histesame");
   //root3_ZEta->Draw("histesame");
 
   c1->cd(3);
@@ -226,17 +226,17 @@ void run()
   c2->Divide(2,2);
 
   c2->cd(1);
-  root2_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
-  root2_JPt->Draw("histe");
-  root1_JPt->Draw("esame");
+  root1_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
+  root1_JPt->Draw("e");
+  root2_JPt->Draw("histesame");
   //root2_JPt->Draw("histesame");
 
 
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"4f","lep");
-  leg->AddEntry(root2_JPt,"OLD_4f","F");
+  leg->AddEntry(root1_JPt,"Z+0,1jet 4f LO","lep");
+  leg->AddEntry(root2_JPt,"Z+0,1jet 5f LO","F");
   //leg->AddEntry(root3_JPt,"DY_1Jet_LO","F");
   leg->Draw("same");
 
@@ -295,8 +295,8 @@ void run()
   leg = new TLegend(0.7,0.7,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_SumY,"4f","lep");
-  leg->AddEntry(root2_SumY,"Old_4f","F");
+  leg->AddEntry(root1_SumY,"Z+0,1jet 4f LO","lep");
+  leg->AddEntry(root2_SumY,"Z+0,1jet 5f LO","F");
   //leg->AddEntry(root3_SumY,"DY_1Jet_LO","F");
   leg->Draw("same");
 
