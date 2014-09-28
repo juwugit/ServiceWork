@@ -190,9 +190,9 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_ZPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_ZPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_ZPt,"dy01j_5f_LO","F");
+  leg->AddEntry(root1_ZPt,"dy0j_4f_LO","lep");
+  leg->AddEntry(root2_ZPt,"dy0j_4f_NLO","F");
+  leg->AddEntry(root3_ZPt,"dy01j_4f_LO","F");
   leg->Draw("same");
 
   c1->cd(2);
@@ -235,9 +235,9 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_JPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_JPt,"dy01j_5f_LO","F");
+  leg->AddEntry(root1_JPt,"dy0j_4f_LO","lep");
+  leg->AddEntry(root2_JPt,"dy0j_4f_NLO","F");
+  leg->AddEntry(root3_JPt,"dy01j_4f_LO","F");
   leg->Draw("same");
 
 
@@ -296,9 +296,9 @@ void run()
   leg = new TLegend(0.7,0.7,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_JPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_JPt,"dy01j_5f_LO","F");
+  leg->AddEntry(root1_JPt,"dy0j_4f_LO","lep");
+  leg->AddEntry(root2_JPt,"dy0j_4f_NLO","F");
+  leg->AddEntry(root3_JPt,"dy01j_4f_LO","F");
   leg->Draw("same");
 
 
