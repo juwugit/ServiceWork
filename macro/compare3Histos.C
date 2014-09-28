@@ -5,9 +5,9 @@
 void run()
 {
 
-  TFile* root1  = new TFile("rootfile/dy0j_5f_LO_MLM.root");
-  TFile* root2  = new TFile("rootfile/dy0j_5f_NLO.root");
-  TFile* root3  = new TFile("rootfile/dy01j_5f_LO_MLM.root");
+  TFile* root1  = new TFile("rootfile/dy0j_4f_LO_MLM.root");
+  TFile* root2  = new TFile("rootfile/dy0j_4f_NLO.root");
+  TFile* root3  = new TFile("rootfile/dy01j_4f_LO_MLM.root");
 
 
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");
@@ -256,6 +256,7 @@ void run()
 
 
   c2->cd(4);
+  gPad->SetLogy();
   root3_nJet->GetXaxis()->SetTitle("nGenJet");
   root3_nJet->Draw("histe");
   root1_nJet->Draw("esame");

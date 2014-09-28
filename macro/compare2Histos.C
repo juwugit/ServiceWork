@@ -190,8 +190,8 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_ZPt,"Z+0,1jet 4f LO","lep");
-  leg->AddEntry(root2_ZPt,"Z+0,1jet 5f LO","F");
+  leg->AddEntry(root1_ZPt,"Z+0jet 4f NLO","lep");
+  leg->AddEntry(root2_ZPt,"Z+0jet 5f NLO","F");
   //leg->AddEntry(root3_ZPt,"DY_01Jet_LO","F");
   leg->Draw("same");
 
@@ -235,8 +235,8 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"Z+0,1jet 4f LO","lep");
-  leg->AddEntry(root2_JPt,"Z+0,1jet 5f LO","F");
+  leg->AddEntry(root1_JPt,"Z+0jet 4f NLO","lep");
+  leg->AddEntry(root2_JPt,"Z+0jet 5f NLO","F");
   //leg->AddEntry(root3_JPt,"DY_1Jet_LO","F");
   leg->Draw("same");
 
@@ -256,6 +256,7 @@ void run()
 
 
   c2->cd(4);
+  //gPad->SetLogy();
   root2_nJet->GetXaxis()->SetTitle("nGenJet");
   root2_nJet->Draw("histe");
   root1_nJet->Draw("esame");
@@ -295,8 +296,8 @@ void run()
   leg = new TLegend(0.7,0.7,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_SumY,"Z+0,1jet 4f LO","lep");
-  leg->AddEntry(root2_SumY,"Z+0,1jet 5f LO","F");
+  leg->AddEntry(root1_SumY,"Z+0jet 4f NLO","lep");
+  leg->AddEntry(root2_SumY,"Z+0jet 5f NLO","F");
   //leg->AddEntry(root3_SumY,"DY_1Jet_LO","F");
   leg->Draw("same");
 
