@@ -71,6 +71,11 @@ void juwu(std::string inputFile, std::string outputFile){
     Float_t  weight      = data.GetFloat("mcWeight");
 
 
+    if(weight>0) weight=1;
+    else if(weight<0) weight=-1;
+
+
+
     cout<<"mcWeight:"<<weight<<endl;
     
 
