@@ -6,5 +6,5 @@ define ell+ = e+ mu+
 define ell- = e- mu- 
 
 generate p p > ell+ ell- /h [QCD]
-output dy0j_5f_NLO
+output dy0j_5f_NLO_PYTHIA8
 
