@@ -5,10 +5,10 @@
 void run()
 {
 
-  TFile* root1  = new TFile("rootfile/dy0j_5f_LO_MLM.root");
-  TFile* root2  = new TFile("rootfile/dy0j_5f_NLO.root");
-  TFile* root3  = new TFile("rootfile/dy01j_5f_LO_MLM.root");
-  TFile* root4  = new TFile("rootfile/dy01j_5f_NLO_FXFX.root");
+  TFile* root1  = new TFile("dy0j_5f_LO_flat.root");
+  TFile* root2  = new TFile("dy0j_5f_NLO_flat.root");
+  TFile* root3  = new TFile("dy0j_5f_LO_herwigpp_flat.root");
+  TFile* root4  = new TFile("dy0j_5f_NLO_herwigpp_flat.root");
 
 
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");
@@ -266,8 +266,9 @@ void run()
   c1->Divide(2,2);
 
   c1->cd(1);
-  root2_ZPt->GetXaxis()->SetTitle("Z P_{T} [GeV]");
-  root2_ZPt->Draw("histe");
+  root3_ZPt->GetXaxis()->SetTitle("Z P_{T} [GeV]");
+  root3_ZPt->Draw("histe");
+  root2_ZPt->Draw("histesame");
   root3_ZPt->Draw("histesame");
   root1_ZPt->Draw("esame");
   root4_ZPt->Draw("esame");
@@ -275,16 +276,17 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_ZPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_ZPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_ZPt,"dy01j_5f_LO","F");
-  leg->AddEntry(root4_ZPt,"dy01j_5f_NLO_FXFX","lep");
+  leg->AddEntry(root1_ZPt,"dy0j_5f_LO_PYTHIA8","lep");
+  leg->AddEntry(root2_ZPt,"dy0j_5f_NLO_PYTHIA8","F");
+  leg->AddEntry(root3_ZPt,"dy0j_5f_LO_HerwigPP","F");
+  leg->AddEntry(root4_ZPt,"dy0j_5f_NLO_HerwigPP","lep");
   leg->Draw("same");
 
   c1->cd(2);
-  root2_ZEta->GetXaxis()->SetTitle("Z #eta");
-  root2_ZEta->Draw("histe");
-  root3_ZEta->Draw("histesame");  
+  root3_ZEta->GetXaxis()->SetTitle("Z #eta");
+  root3_ZEta->Draw("histe");
+  root2_ZEta->Draw("histesame");  
+  root3_ZEta->Draw("histesame");
   root1_ZEta->Draw("esame");
   root4_ZEta->Draw("esame");
   
@@ -296,8 +298,9 @@ void run()
   root4_ZPhi->Draw("esame");
   
   c1->cd(4);
-  root2_ZMass->GetXaxis()->SetTitle("M_{ll} [GeV]");
-  root2_ZMass->Draw("histe");
+  root3_ZMass->GetXaxis()->SetTitle("M_{ll} [GeV]");
+  root3_ZMass->Draw("histe");
+  root2_ZMass->Draw("histesame");
   root3_ZMass->Draw("histesame");
   root1_ZMass->Draw("esame");  
   root4_ZMass->Draw("esame");
@@ -315,8 +318,9 @@ void run()
   c2->Divide(2,2);
 
   c2->cd(1);
-  root2_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
-  root2_JPt->Draw("histe");
+  root3_JPt->GetXaxis()->SetTitle("Jet P_{T} [GeV]");
+  root3_JPt->Draw("histe");
+  root2_JPt->Draw("histesame");
   root3_JPt->Draw("histesame");
   root1_JPt->Draw("esame");
   root4_JPt->Draw("esame");
@@ -325,10 +329,10 @@ void run()
   leg = new TLegend(0.5,0.5,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_JPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_JPt,"dy01j_5f_LO","F");
-  leg->AddEntry(root4_JPt,"dy01j_5f_NLO_FXFX","lep");
+  leg->AddEntry(root1_JPt,"dy0j_5f_LO_PYTHIA8","lep");
+  leg->AddEntry(root2_JPt,"dy0j_5f_NLO_PYTHIA8","F");
+  leg->AddEntry(root3_JPt,"dy0j_5f_LO_HerwigPP","F");
+  leg->AddEntry(root4_JPt,"dy0j_5f_NLO_HerwigPP","lep");
   leg->Draw("same");
 
 
@@ -380,10 +384,10 @@ void run()
   root4_SumY->Draw("esame");
   
   c3->cd(1);
-  root3_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
-  root3_DiffY->Draw("histe");
-  root2_DiffY->Draw("histesame");
-  root3_DiffY->Draw("histesame");  
+  root2_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
+  root2_DiffY->Draw("histe");
+  root3_DiffY->Draw("histesame");
+  //root2_DiffY->Draw("histesame");  
   root1_DiffY->Draw("esame");
   root4_DiffY->Draw("esame");
   
@@ -392,10 +396,10 @@ void run()
   leg = new TLegend(0.6,0.6,0.8,0.8);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"dy0j_5f_LO","lep");
-  leg->AddEntry(root2_JPt,"dy0j_5f_NLO","F");
-  leg->AddEntry(root3_JPt,"dy01j_5f_LO","F");
-  leg->AddEntry(root4_JPt,"dy01j_5f_NLO_FXFX","lep");
+  leg->AddEntry(root1_JPt,"dy0j_5f_LO_PYTHIA8","lep");
+  leg->AddEntry(root2_JPt,"dy0j_5f_NLO_PYTHIA8","F");
+  leg->AddEntry(root3_JPt,"dy0j_5f_LO_HerwigPP","F");
+  leg->AddEntry(root4_JPt,"dy0j_5f_NLO_HerwigPP","lep");
   leg->Draw("same");
 
 

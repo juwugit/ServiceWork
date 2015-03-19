@@ -114,7 +114,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
 	  float zm   = (plus+minus).M();
           float zpt  = (plus+minus).Pt();
-          float zeta = (plus+minus).Eta();
+          float zeta = (plus+minus).Rapidity(); // temporary change .Eta to .Rapidity
           float zphi = (plus+minus).Phi();
 
 	  h_genZMass->Fill(zm,weight);
@@ -168,7 +168,7 @@ void juwu(std::string inputFile, std::string outputFile){
        {
 
 	 h_genJetPt->Fill(jet_l4.Pt(),weight);
-	 h_genJetEta->Fill(jet_l4.Eta(),weight);
+	 h_genJetEta->Fill(jet_l4.Rapidity(),weight); // temporary change .Eta to .Rapidity
 	 h_genJetPhi->Fill(jet_l4.Phi(),weight);
 
 	 float ydif = 0.5*(jet_l4.Rapidity()-((plus+minus).Rapidity()));
@@ -217,17 +217,11 @@ void juwu(std::string inputFile, std::string outputFile){
   float tJPhi=0;                                                                                                           
   tJPhi=h_genJetPhi->Integral();                                                                                           
   h_genJetPhi->Scale(1/tJPhi);     
-
   float tsy=0;
-
   tsy=h_SumY->Integral();
-
   h_SumY->Scale(1/tsy);
-
   float tdy=0;
-
   tdy=h_DiffY->Integral();
-
   h_DiffY->Scale(1/tdy);
   
 
