@@ -5,10 +5,10 @@
 void run()
 {
 
-  TFile* root1  = new TFile("dy0j_5f_LO_flat.root");
-  TFile* root2  = new TFile("dy0j_5f_NLO_flat.root");
-  TFile* root3  = new TFile("dy0j_5f_LO_herwigpp_flat.root");
-  TFile* root4  = new TFile("dy0j_5f_NLO_herwigpp_flat.root");
+  TFile* root1  = new TFile("dy0j_5f_LO_PYTHIA8_flat.root");
+  TFile* root2  = new TFile("dy0j_5f_NLO_PYTHIA8_flat.root");
+  TFile* root3  = new TFile("dy0j_5f_LO_HERWIGPP_flat.root");
+  TFile* root4  = new TFile("dy0j_5f_NLO_HERWIGPP_flat.root");
 
 
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");

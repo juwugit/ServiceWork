@@ -8,7 +8,7 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "macro/untuplizer.h"
+#include "untuplizer.h"
 
 
 using namespace std;
@@ -76,7 +76,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
 
-    cout<<"mcWeight:"<<weight<<endl;
+    //cout<<"mcWeight:"<<weight<<endl;
     
 
     TLorentzVector plus(0,0,0,0);
@@ -105,132 +105,102 @@ void juwu(std::string inputFile, std::string outputFile){
 		minusMax=i;
 		minusPtMax=pt;
 	}
-     }
+    }
+    
+    if(plusMax>=0 && minusMax>=0){
 
-     if(plusMax>=0 && minusMax>=0){
-
-	  plus.SetPtEtaPhiE(genParPt[plusMax],genParEta[plusMax],genParPhi[plusMax],genParE[plusMax]);
-	  minus.SetPtEtaPhiE(genParPt[minusMax],genParEta[minusMax],genParPhi[minusMax], genParE[minusMax]);
-
-	  float zm   = (plus+minus).M();
-          float zpt  = (plus+minus).Pt();
-          float zeta = (plus+minus).Rapidity(); // temporary change .Eta to .Rapidity
-          float zphi = (plus+minus).Phi();
-
-	  h_genZMass->Fill(zm,weight);
-          h_genZPt->Fill(zpt,weight);
-          h_genZEta->Fill(zeta,weight);
-          h_genZPhi->Fill(zphi,weight);
-
-     }
-
-
-     TLorentzVector jet_l4(0,0,0,0);
-     float jetPtMax=-999;
-     float jetEtaMax=-999;
-     int countjet=0;
-     for(unsigned int j=0; j<nGenJet;j++)
-       {
-	 float pt  = genJetPt[j];
-	 float eta = genJetEta[j];
-
-
-	 TLorentzVector thisJet(0,0,0,0);
-	 thisJet.SetPtEtaPhiE(genJetPt[j],genJetEta[j],genJetPhi[j],genJetE[j]);
-
-
-	 if(plusMax>0)
-	   {
-	     float dR= thisJet.DeltaR(plus);
-	     if(dR<0.5)continue;
-	   }
-
-	 if(minusMax>0)
-	   {
-	     float dR= thisJet.DeltaR(minus);
-	     if(dR<0.5)continue;
-	   }
-	 if(thisJet.Pt()>jetPtMax)
-	   {
-	     jet_l4 = thisJet;
-	     jetPtMax = thisJet.Pt();
-	   }
-	 
-	 countjet++;
-
-	   
-       }
-
-
+      plus.SetPtEtaPhiE(genParPt[plusMax],genParEta[plusMax],genParPhi[plusMax],genParE[plusMax]);
+      minus.SetPtEtaPhiE(genParPt[minusMax],genParEta[minusMax],genParPhi[minusMax], genParE[minusMax]);
+      
+      float zm   = (plus+minus).M();
+      float zpt  = (plus+minus).Pt();
+      float zeta = (plus+minus).Eta(); 
+      float zphi = (plus+minus).Phi();
+      
+      h_genZMass->Fill(zm,weight);
+      h_genZPt->Fill(zpt,weight);
+      h_genZEta->Fill(zeta,weight);
+      h_genZPhi->Fill(zphi,weight);
+	  
+    }
+    
+    
+    TLorentzVector jet_l4(0,0,0,0);
+    float jetPtMax=-999;
+    int countjet=0;
+    
+    for(int j=0; j<nGenJet;j++){
+	
+	TLorentzVector thisJet(0,0,0,0);
+	thisJet.SetPtEtaPhiE(genJetPt[j],genJetEta[j],genJetPhi[j],genJetE[j]);
+	
+	
+	if(plusMax>0)
+	  {
+	    float dR= thisJet.DeltaR(plus);
+	    if(dR<0.5)continue;
+	  }
+	
+	if(minusMax>0)
+	  {
+	    float dR= thisJet.DeltaR(minus);
+	    if(dR<0.5)continue;
+	  }
+	if(thisJet.Pt()>jetPtMax)
+	  {
+	    jet_l4 = thisJet;
+	    jetPtMax = thisJet.Pt();
+	  }
+	
+	countjet++;	
+	
+    } // loop jet
+    
      h_nGenJet->Fill(countjet,weight);
 
-     if(jetPtMax>0)
-       {
-
+     
+     if(jetPtMax>0){
+	 
 	 h_genJetPt->Fill(jet_l4.Pt(),weight);
-	 h_genJetEta->Fill(jet_l4.Rapidity(),weight); // temporary change .Eta to .Rapidity
+	 h_genJetEta->Fill(jet_l4.Eta(),weight);
 	 h_genJetPhi->Fill(jet_l4.Phi(),weight);
-
-	 float ydif = 0.5*(jet_l4.Rapidity()-((plus+minus).Rapidity()));
-	 float ysum = 0.5*(jet_l4.Rapidity()+((plus+minus).Rapidity()));
-
-
-	 h_DiffY->Fill(ydif,weight);
-	 h_SumY->Fill(ysum,weight);
-       }
-
-
-
-
-
-
+	 
+	 
+	 if(plusMax>=0 && minusMax>=0){
+	   
+	   float ydif = 0.5*(((plus+minus).Rapidity())-(jet_l4.Rapidity()));
+	   float ysum = 0.5*(((plus+minus).Rapidity())+(jet_l4.Rapidity()));
+	   
+	   h_DiffY->Fill(ydif,weight);
+	   h_SumY->Fill(ysum,weight);
+	   
+	 } 
+     }
 
 
+  } // entries     
 
-  } //entries 
-
-    
-
-    
-  //normalization
-  float tZPt=0;                                                                                                            
-  tZPt=h_genZPt->Integral();                                                                                               
-  h_genZPt->Scale(1/tZPt);                                                                                                 
-  float tZEta=0;                                                                                                           
-  tZEta=h_genZEta->Integral();                                                                                             
-  h_genZEta->Scale(1/tZEta);                                                                                               
-  float tZPhi=0;                                                                                                           
-  tZPhi=h_genZPhi->Integral();                                                                                             
-  h_genZPhi->Scale(1/tZPhi);                                                                                               
-  float tZMass=0;                                                                                                          
-  tZMass=h_genZMass->Integral();                                                                                           
-  h_genZMass->Scale(1/tZMass);                                                                                             
-  float tNJet=0;                                                                                                           
-  tNJet=h_nGenJet->Integral();                                                                                             
-  h_nGenJet->Scale(1/tNJet);                                                                                               
-  float tJPt=0;                                                                                                            
-  tJPt=h_genJetPt->Integral();                                                                                             
-  h_genJetPt->Scale(1/tJPt);                                                                                               
-  float tJEta=0;                                                                                                           
-  tJEta=h_genJetEta->Integral();                                                                                           
-  h_genJetEta->Scale(1/tJEta);                                                                                             
-  float tJPhi=0;                                                                                                           
-  tJPhi=h_genJetPhi->Integral();                                                                                           
-  h_genJetPhi->Scale(1/tJPhi);     
-  float tsy=0;
-  tsy=h_SumY->Integral();
-  h_SumY->Scale(1/tsy);
-  float tdy=0;
-  tdy=h_DiffY->Integral();
-  h_DiffY->Scale(1/tdy);
   
-
-
-
-
+  
+     
+     
+  //normalization
+  h_genZPt->Scale(1/(h_genZPt->Integral()));                                                                       
+  h_genZEta->Scale(1/(h_genZEta->Integral()));                             
+  h_genZPhi->Scale(1/(h_genZPhi->Integral()));                                        
+  h_genZMass->Scale(1/h_genZMass->Integral());                                        
+  h_nGenJet->Scale(1/(h_nGenJet->Integral()));                                                   
+  h_genJetPt->Scale(1/(h_genJetPt->Integral()));                                                              
+  h_genJetEta->Scale(1/(h_genJetEta->Integral()));                               
+  h_genJetPhi->Scale(1/(h_genJetPhi->Integral()));
+  h_SumY->Scale(1/(h_SumY->Integral()));
+  h_DiffY->Scale(1/(h_DiffY->Integral()));
+  
+  
+  
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
-
+  
   h_genZPt->Write();        
   h_genZEta->Write();     
   h_genZPhi->Write(); 
@@ -241,9 +211,9 @@ void juwu(std::string inputFile, std::string outputFile){
   h_genJetPhi->Write();
   h_SumY->Write();
   h_DiffY->Write();
-
-
+     
+  
   outFile->Close();
-
-
+  
+     
 }
