@@ -8,7 +8,7 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "untuplizer.h"
+#include "macro/untuplizer.h"
 
 
 using namespace std;
@@ -76,7 +76,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
 
-    //cout<<"mcWeight:"<<weight<<endl;
+    cout<<"mcWeight:"<<weight<<endl;
     
 
     TLorentzVector plus(0,0,0,0);
@@ -135,13 +135,13 @@ void juwu(std::string inputFile, std::string outputFile){
 	thisJet.SetPtEtaPhiE(genJetPt[j],genJetEta[j],genJetPhi[j],genJetE[j]);
 	
 	
-	if(plusMax>0)
+	if(plusMax>=0)
 	  {
 	    float dR= thisJet.DeltaR(plus);
 	    if(dR<0.5)continue;
 	  }
 	
-	if(minusMax>0)
+	if(minusMax>=0)
 	  {
 	    float dR= thisJet.DeltaR(minus);
 	    if(dR<0.5)continue;
