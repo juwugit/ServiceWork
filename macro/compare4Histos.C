@@ -14,9 +14,11 @@ void run()
   TH1F* root1_nJet = (TH1F*)root1->Get("h_nGenJet");
   TH1F* root1_JPt  = (TH1F*)root1->Get("h_genJetPt");
   TH1F* root1_JEta = (TH1F*)root1->Get("h_genJetEta");  
+  TH1F* root1_JRap = (TH1F*)root1->Get("h_genJetRap");  
   TH1F* root1_JPhi = (TH1F*)root1->Get("h_genJetPhi");
   TH1F* root1_ZPt  = (TH1F*)root1->Get("h_genZPt");
   TH1F* root1_ZEta = (TH1F*)root1->Get("h_genZEta");
+  TH1F* root1_ZRap = (TH1F*)root1->Get("h_genZRap");
   TH1F* root1_ZPhi = (TH1F*)root1->Get("h_genZPhi");
   TH1F* root1_ZMass= (TH1F*)root1->Get("h_genZMass");
   TH1F* root1_SumY = (TH1F*)root1->Get("h_SumY");
@@ -26,9 +28,11 @@ void run()
   TH1F* root2_nJet = (TH1F*)root2->Get("h_nGenJet");
   TH1F* root2_JPt  = (TH1F*)root2->Get("h_genJetPt");
   TH1F* root2_JEta = (TH1F*)root2->Get("h_genJetEta");
+  TH1F* root2_JRap = (TH1F*)root2->Get("h_genJetRap");
   TH1F* root2_JPhi = (TH1F*)root2->Get("h_genJetPhi");
   TH1F* root2_ZPt  = (TH1F*)root2->Get("h_genZPt");
   TH1F* root2_ZEta = (TH1F*)root2->Get("h_genZEta");
+  TH1F* root2_ZRap = (TH1F*)root2->Get("h_genZRap");
   TH1F* root2_ZPhi = (TH1F*)root2->Get("h_genZPhi");
   TH1F* root2_ZMass= (TH1F*)root2->Get("h_genZMass");
   TH1F* root2_SumY = (TH1F*)root2->Get("h_SumY");
@@ -38,9 +42,11 @@ void run()
   TH1F* root3_nJet = (TH1F*)root3->Get("h_nGenJet");
   TH1F* root3_JPt  = (TH1F*)root3->Get("h_genJetPt");
   TH1F* root3_JEta = (TH1F*)root3->Get("h_genJetEta");
+  TH1F* root3_JRap = (TH1F*)root3->Get("h_genJetRap");
   TH1F* root3_JPhi = (TH1F*)root3->Get("h_genJetPhi");
   TH1F* root3_ZPt  = (TH1F*)root3->Get("h_genZPt");
   TH1F* root3_ZEta = (TH1F*)root3->Get("h_genZEta");
+  TH1F* root3_ZRap = (TH1F*)root3->Get("h_genZRap");
   TH1F* root3_ZPhi = (TH1F*)root3->Get("h_genZPhi");
   TH1F* root3_ZMass= (TH1F*)root3->Get("h_genZMass");
   TH1F* root3_SumY = (TH1F*)root3->Get("h_SumY");
@@ -50,9 +56,11 @@ void run()
   TH1F* root4_nJet = (TH1F*)root4->Get("h_nGenJet");
   TH1F* root4_JPt  = (TH1F*)root4->Get("h_genJetPt");
   TH1F* root4_JEta = (TH1F*)root4->Get("h_genJetEta");
+  TH1F* root4_JRap = (TH1F*)root4->Get("h_genJetRap");
   TH1F* root4_JPhi = (TH1F*)root4->Get("h_genJetPhi");
   TH1F* root4_ZPt  = (TH1F*)root4->Get("h_genZPt");
   TH1F* root4_ZEta = (TH1F*)root4->Get("h_genZEta");
+  TH1F* root4_ZRap = (TH1F*)root4->Get("h_genZRap");
   TH1F* root4_ZPhi = (TH1F*)root4->Get("h_genZPhi");
   TH1F* root4_ZMass= (TH1F*)root4->Get("h_genZMass");
   TH1F* root4_SumY = (TH1F*)root4->Get("h_SumY");
@@ -97,6 +105,24 @@ void run()
   root4_ZEta->SetMarkerColor(kBlue+1);
   root4_ZEta->SetMarkerStyle(kBlue+1);
   root4_ZEta->SetMarkerSize(1);
+
+
+  root1_ZRap->SetLineColor(1);
+  root1_ZRap->SetLineWidth(2);
+  root1_ZRap->SetMarkerColor(1);
+  root1_ZRap->SetMarkerStyle(20);
+  root1_ZRap->SetMarkerSize(1);
+  root2_ZRap->SetLineColor(8);
+  root2_ZRap->SetFillColor(8);
+  //root2_ZRap->SetFillStyle(3005);
+  root3_ZRap->SetFillColor(2);
+  root3_ZRap->SetLineColor(2);
+  root3_ZRap->SetFillStyle(3004);
+  root4_ZRap->SetLineColor(kBlue+1);
+  root4_ZRap->SetLineWidth(kBlue+1);
+  root4_ZRap->SetMarkerColor(kBlue+1);
+  root4_ZRap->SetMarkerStyle(kBlue+1);
+  root4_ZRap->SetMarkerSize(1);
 
 
 
@@ -175,6 +201,24 @@ void run()
   root4_JEta->SetMarkerColor(kBlue+1);
   root4_JEta->SetMarkerStyle(kBlue+1);
   root4_JEta->SetMarkerSize(1);
+
+
+  root1_JRap->SetLineColor(1);
+  root1_JRap->SetLineWidth(2);
+  root1_JRap->SetMarkerColor(1);
+  root1_JRap->SetMarkerStyle(20);
+  root1_JRap->SetMarkerSize(1);
+  root2_JRap->SetLineColor(8);
+  root2_JRap->SetFillColor(8);
+  //root2_JRap->SetFillStyle(3005);
+  root3_JRap->SetFillColor(2);
+  root3_JRap->SetLineColor(2);
+  root3_JRap->SetFillStyle(3004);
+  root4_JRap->SetLineColor(kBlue+1);
+  root4_JRap->SetLineWidth(kBlue+1);
+  root4_JRap->SetMarkerColor(kBlue+1);
+  root4_JRap->SetMarkerStyle(kBlue+1);
+  root4_JRap->SetMarkerSize(1);
 
 
 
@@ -374,7 +418,24 @@ void run()
 
 
   TCanvas *c3= new TCanvas("c3","",200,10,1600,1600);
-  c3->Divide(1,2);
+  c3->Divide(2,2);
+
+  c3->cd(1);
+  root2_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
+  root2_DiffY->Draw("histe");
+  //root2_DiffY->Draw("histesame");
+  root3_DiffY->Draw("histesame");  
+  root1_DiffY->Draw("esame");
+  root4_DiffY->Draw("esame");
+
+  leg = new TLegend(0.65,0.55,0.95,0.85);
+  leg->SetBorderSize(0);
+  leg->SetFillColor(0);
+  leg->AddEntry(root1_JPt,"dy0j_5f_LO_PYTHIA8","lep");
+  leg->AddEntry(root2_JPt,"dy0j_5f_NLO_PYTHIA8","F");
+  leg->AddEntry(root3_JPt,"dy0j_5f_LO_HerwigPP","F");
+  leg->AddEntry(root4_JPt,"dy0j_5f_NLO_HerwigPP","lep");
+  leg->Draw("same");
  
   c3->cd(2);
   root2_SumY->GetXaxis()->SetTitle("Rapidity Sum");
@@ -383,25 +444,21 @@ void run()
   root1_SumY->Draw("esame");
   root4_SumY->Draw("esame");
   
-  c3->cd(1);
-  root2_DiffY->GetXaxis()->SetTitle("Rapidity Difference");
-  root2_DiffY->Draw("histe");
-  root3_DiffY->Draw("histesame");
-  //root2_DiffY->Draw("histesame");  
-  root1_DiffY->Draw("esame");
-  root4_DiffY->Draw("esame");
-  
+  c3->cd(3);
+  root4_ZRap->GetXaxis()->SetTitle("Z Rapidity");
+  root4_ZRap->Draw("e");
+  root2_ZRap->Draw("histesame");
+  root3_ZRap->Draw("histesame");  
+  root1_ZRap->Draw("esame");
+  root4_ZRap->Draw("esame");
 
-
-  leg = new TLegend(0.6,0.6,0.8,0.8);
-  leg->SetBorderSize(0);
-  leg->SetFillColor(0);
-  leg->AddEntry(root1_JPt,"dy0j_5f_LO_PYTHIA8","lep");
-  leg->AddEntry(root2_JPt,"dy0j_5f_NLO_PYTHIA8","F");
-  leg->AddEntry(root3_JPt,"dy0j_5f_LO_HerwigPP","F");
-  leg->AddEntry(root4_JPt,"dy0j_5f_NLO_HerwigPP","lep");
-  leg->Draw("same");
-
+  c3->cd(4);
+  root4_JRap->GetXaxis()->SetTitle("Jet Rapidity");
+  root4_JRap->Draw("e");
+  root2_JRap->Draw("histesame");
+  root3_JRap->Draw("histesame");  
+  root1_JRap->Draw("esame");
+  root4_JRap->Draw("esame");  
 
 
   gSystem->ProcessEvents();
@@ -410,9 +467,6 @@ void run()
   img3->WriteImage("canvas6.png");
   delete c3;
   delete img3;
-
-
-
 
 
 
