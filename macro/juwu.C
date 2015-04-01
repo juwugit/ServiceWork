@@ -32,6 +32,7 @@ void juwu(std::string inputFile, std::string outputFile){
   TH1F* h_genJetPhi= new TH1F("h_genJetPhi","",40,-4,4);
   TH1F* h_SumY     = new TH1F("h_SumY","",40,-4.5,4.5);
   TH1F* h_DiffY    = new TH1F("h_DiffY","",40,-4.5,4.5);
+  TH1F* h_deltaPhi = new TH1F("h_deltaPhi","",30,-4,-4);
 
 
 
@@ -47,7 +48,7 @@ void juwu(std::string inputFile, std::string outputFile){
   h_genJetPhi->Sumw2();
   h_DiffY->Sumw2();
   h_SumY->Sumw2();
-
+  h_deltaPhi->Sumw2();
 
 
 
@@ -186,10 +187,12 @@ void juwu(std::string inputFile, std::string outputFile){
 	   
 	   float ydif = 0.5*(((plus+minus).Rapidity())-(jet_l4.Rapidity()));
 	   float ysum = 0.5*(((plus+minus).Rapidity())+(jet_l4.Rapidity()));
+	   float dPhi = (plus+minus).Phi()-jet_l4.Phi();
 	   
 	   h_DiffY->Fill(ydif,weight);
 	   h_SumY->Fill(ysum,weight);
-	   
+	   h_deltaPhi->Fill(dPhi,weight);
+
 	 } 
      }
 
@@ -202,19 +205,20 @@ void juwu(std::string inputFile, std::string outputFile){
      
      
   //normalization
-  h_genZPt->Scale(1/(h_genZPt->Integral()));                                                                       
+  h_genZPt->Scale(1/(h_genZPt->Integral()));  
   h_genZEta->Scale(1/(h_genZEta->Integral()));                             
   h_genZRap->Scale(1/(h_genZRap->Integral()));                             
-  h_genZPhi->Scale(1/(h_genZPhi->Integral()));                                        
-  h_genZMass->Scale(1/h_genZMass->Integral());                                        
-  h_nGenJet->Scale(1/(h_nGenJet->Integral()));                                                   
-  h_genJetPt->Scale(1/(h_genJetPt->Integral()));                                                              
+  h_genZPhi->Scale(1/(h_genZPhi->Integral()));    
+  h_genZMass->Scale(1/h_genZMass->Integral());        
+  h_nGenJet->Scale(1/(h_nGenJet->Integral()));            
+  h_genJetPt->Scale(1/(h_genJetPt->Integral()));        
   h_genJetEta->Scale(1/(h_genJetEta->Integral()));                         
-  h_genJetRap->Scale(1/(h_genJetRap->Integral()));                                   
+  h_genJetRap->Scale(1/(h_genJetRap->Integral()));                    
   h_genJetPhi->Scale(1/(h_genJetPhi->Integral()));
   h_SumY->Scale(1/(h_SumY->Integral()));
   h_DiffY->Scale(1/(h_DiffY->Integral()));
-  
+  h_deltaPhi->Scale(1/(h_deltaPhi->Integral()));
+
   
   
   //save output
@@ -232,7 +236,8 @@ void juwu(std::string inputFile, std::string outputFile){
   h_genJetPhi->Write();
   h_SumY->Write();
   h_DiffY->Write();
-  
+  h_deltaPhi->Write();
+
   outFile->Close();
   
      

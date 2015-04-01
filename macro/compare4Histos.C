@@ -23,6 +23,8 @@ void run()
   TH1F* root1_ZMass= (TH1F*)root1->Get("h_genZMass");
   TH1F* root1_SumY = (TH1F*)root1->Get("h_SumY");
   TH1F* root1_DiffY= (TH1F*)root1->Get("h_DiffY");
+  TH1F* root1_dPhi = (TH1F*)root1->Get("h_deltaPhi");
+  
 
 
   TH1F* root2_nJet = (TH1F*)root2->Get("h_nGenJet");
@@ -37,6 +39,8 @@ void run()
   TH1F* root2_ZMass= (TH1F*)root2->Get("h_genZMass");
   TH1F* root2_SumY = (TH1F*)root2->Get("h_SumY");
   TH1F* root2_DiffY= (TH1F*)root2->Get("h_DiffY");
+  TH1F* root2_dPhi= (TH1F*)root2->Get("h_deltaPhi");
+
 
 
   TH1F* root3_nJet = (TH1F*)root3->Get("h_nGenJet");
@@ -51,6 +55,8 @@ void run()
   TH1F* root3_ZMass= (TH1F*)root3->Get("h_genZMass");
   TH1F* root3_SumY = (TH1F*)root3->Get("h_SumY");
   TH1F* root3_DiffY= (TH1F*)root3->Get("h_DiffY");
+  TH1F* root3_dPhi = (TH1F*)root3->Get("h_deltaPhi");
+
 
 
   TH1F* root4_nJet = (TH1F*)root4->Get("h_nGenJet");
@@ -65,7 +71,8 @@ void run()
   TH1F* root4_ZMass= (TH1F*)root4->Get("h_genZMass");
   TH1F* root4_SumY = (TH1F*)root4->Get("h_SumY");
   TH1F* root4_DiffY= (TH1F*)root4->Get("h_DiffY");
-
+  TH1F* root4_dPhi = (TH1F*)root4->Get("h_deltaPhi");
+  
 
 
 
@@ -299,6 +306,26 @@ void run()
   root4_DiffY->SetMarkerSize(1);
 
 
+  root1_dPhi->SetLineColor(1);
+  root1_dPhi->SetLineWidth(2);
+  root1_dPhi->SetMarkerColor(1);
+  root1_dPhi->SetMarkerStyle(20);
+  root1_dPhi->SetMarkerSize(1);
+  root2_dPhi->SetLineColor(8);
+  root2_dPhi->SetFillColor(8);
+  //root2_dPhi->SetFillStyle(3005);
+  root3_dPhi->SetFillColor(2);
+  root3_dPhi->SetLineColor(2);
+  root3_dPhi->SetFillStyle(3004);
+  root4_dPhi->SetLineColor(kBlue+1);
+  root4_dPhi->SetLineWidth(kBlue+1);
+  root4_dPhi->SetMarkerColor(kBlue+1);
+  root4_dPhi->SetMarkerStyle(kBlue+1);
+  root4_dPhi->SetMarkerSize(1);
+
+
+
+
   
   gROOT->SetStyle("Plain");
   gStyle->SetOptStat(0);
@@ -468,6 +495,36 @@ void run()
   delete c3;
   delete img3;
 
+
+
+
+  TCanvas *c4= new TCanvas("c4","",200,10,800,600);
+
+
+  root4_dPhi->GetXaxis()->SetTitle("#Delta#phi");
+  root4_dPhi->Draw("e");
+  root2_dPhi->Draw("histesame");
+  root3_dPhi->Draw("histesame");  
+  root1_dPhi->Draw("esame");
+  root4_dPhi->Draw("esame");  
+
+
+
+  leg = new TLegend(0.4,0.4,0.6,0.6);
+  leg->SetBorderSize(0);
+  leg->SetFillColor(0);
+  leg->AddEntry(root1_JPt,"dy0j_5f_LO_PYTHIA8","lep");
+  leg->AddEntry(root2_JPt,"dy0j_5f_NLO_PYTHIA8","F");
+  leg->AddEntry(root3_JPt,"dy0j_5f_LO_HerwigPP","F");
+  leg->AddEntry(root4_JPt,"dy0j_5f_NLO_HerwigPP","lep");
+  leg->Draw("same");
+
+  gSystem->ProcessEvents();
+  TImage *img4 = TImage::Create();
+  img4->FromPad(c4);
+  img4->WriteImage("canvas7.png");
+  delete c4;
+  delete img4;
 
 
 }
